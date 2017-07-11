@@ -164,6 +164,35 @@ class SiteController extends Controller
         $page = News::findOne($id);
         return $this->render('view', compact('page'));
     }
+    public function actionList(){
+        $tags = \Yii::$app->request->get('id');
+        $query = News::find()->where(['tags2' => $tags])->orWhere(['tags1' => $tags]);
+        $post = new Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $pages = $query->offset($post->offset)->limit($post->limit)->all();
+
+        return $this->render('list', [
+            'post' => $post,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionSearch() {
+        $q = trim(Yii::$app->request->get('q'));
+        if(!$q) return $this->render('search');
+        $query = News::find()->where(['like', 'tags1', $q])->orWhere(['like', 'tags2', $q]);
+        $pages = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 5,
+            'forcePageParam' => false,
+            'pageSizeParam' => false
+        ]);
+        $page = $query->orderBy('id DESC')
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+        return $this->render('search', compact('page','pages'));
+    }
 
 
 }

@@ -43,7 +43,7 @@ $this->title = 'My Yii Application';
                     <h2><a href="<?= Url::to(['site/sport']) ?>">Спорт</a> </h2>
 
                     <?php foreach ($datasport as $i): ?>
-                        <p><?= $i->name ?></p>
+                        <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
 
@@ -53,7 +53,7 @@ $this->title = 'My Yii Application';
                     <h2><a href="<?= Url::to(['site/politic']) ?>">Политика</a> </h2>
 
                     <?php foreach ($datapolitic as $i): ?>
-                        <p><?= $i->name ?></p>
+                        <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
 
@@ -63,7 +63,7 @@ $this->title = 'My Yii Application';
                     <h2><a href="<?= Url::to(['site/analitic']) ?>">Аналитика</a> </h2>
 
                     <?php foreach ($dataanalitic as $i): ?>
-                        <p><?= $i->name ?></p>
+                        <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
 

@@ -55,9 +55,21 @@ AppAsset::register($this);
             )
         ],
     ]);
-    NavBar::end();
-    ?>
+    echo " <br> <form action=" . \yii\helpers\Url::to(['site/search']) .  " method ='get' style='text-align: center'>
+    <input list='tags' id=\"search-field\" name=\"q\" type=\"text\" placeholder=\"Искать ...\" class=\"hint\" autocomplete=\"off\" />
+    <datalist id=\"tags\">";
+    foreach (\app\models\News::find()->groupBy(['tags1'])->all() as $a) {
+        echo "<option > $a->tags1 </option >
+            <option > $a->tags2 </option >";
+        };
+     echo
+            "</datalist> 
+            <button id=\"search-submit\" type=\"submit\">Найти</button>
+            </form> ";
 
+    NavBar::end();
+
+    ?>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

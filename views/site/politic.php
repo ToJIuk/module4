@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
     <h1>Политика</h1>
     <hr>
 <?php foreach ($pages as $p): ?>
-    <h3 class="panel-title"><a href="<?=Url::to(['site/view', 'id' => $p->id])?>"><?= $p->name ?></a></h3>
+    <h4><a href="<?=Url::to(['site/view', 'id' => $p->id])?>"><?= $p->name ?></a></h4>
     <br>
 <?php endforeach; ?>
 
