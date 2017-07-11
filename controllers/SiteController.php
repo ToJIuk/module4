@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use yii\data\Pagination;
 use app\models\News;
 use Yii;
 use yii\filters\AccessControl;
@@ -62,9 +63,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $data = News::find()->orderBy('id')->all();
-        return $this->render('index', compact('data'));
+        $datasport = News::find()->where(['category' =>'Спорт'])->orderBy('id desc')->limit(5)->all();
+        $datapolitic = News::find()->where(['category' =>'Политика'])->orderBy('id desc')->limit(5)->all();
+        $dataanalitic = News::find()->where(['analityc' =>1])->orderBy('id desc')->limit(5)->all();
+        $dataslider = News::find()->orderBy('id desc')->limit(3)->all();
+
+        return $this->render('index', compact('datasport', 'datapolitic', 'dataanalitic', 'dataslider'));
     }
+
 
     /**
      * Login action.
@@ -125,4 +131,39 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionSport(){
+        $query = News::find()->where(['category' => 'Спорт']);
+        $post = new Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $pages = $query->offset($post->offset)->limit($post->limit)->all();
+
+        return $this->render('sport', compact('post', 'pages'));
+    }
+
+    public function actionPolitic(){
+        $query = News::find()->where(['category' => 'Политика']);
+        $post = new Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $pages = $query->offset($post->offset)->limit($post->limit)->all();
+
+        return $this->render('politic', compact('post', 'pages'));
+    }
+
+    public function actionAnalitic(){
+        $query = News::find()->where(['analityc' => 1]);
+        $post = new Pagination(['totalCount' => $query->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $pages = $query->offset($post->offset)->limit($post->limit)->all();
+
+        return $this->render('analitic', compact('post', 'pages'));
+    }
+
+    public function actionView(){
+        $id = \Yii::$app->request->get('id');
+        $page = News::findOne($id);
+        return $this->render('view', compact('page'));
+    }
+
+
 }
