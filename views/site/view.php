@@ -2,11 +2,14 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
 
 $session = Yii::$app->session;
 $session->set('countnow', rand(0, 5));
 $session->set('countall', $session['countnow']+$session['countall']);
 ?>
+
+<div class="row">
 
 <?php if (!empty($page)): ?>
         <div class="col-lg-8">
@@ -30,6 +33,34 @@ $session->set('countall', $session['countnow']+$session['countall']);
         </div>
 
         <div class="col-lg-8">
-            <?= "Наблюдают: {$session['countnow']} <br> Всего просмотров: {$session['countall']}"?>
+            <?= "Наблюдают: {$session['countnow']} <br> Всего просмотров: {$session['countall']} <hr>"?>
          </div>
 <?php endif; ?>
+</div>
+<h1>Комментарии</h1><hr>
+<div class="row">
+    <div class="col-lg-4">
+
+        <?php $form = ActiveForm::begin(['class' => 'form-horizontal']); ?>
+
+        <?= $form->field($model, 'text')->label('Текст сообщения') ?>
+
+        <?php if (!\Yii::$app->user->isGuest){ ?>
+            <div class="form-group">
+                <?= Html::submitButton('Добавить комментарий', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+            </div> <?php }else {echo "Для добавления комментариев необходима авторизация";} ?>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-4">
+        <a href=""><?= $model->username?></a>: <?= $model->text ?>
+
+    </div>
+</div>
+
+
+

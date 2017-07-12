@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\AddComments;
 use app\models\Signup;
 use yii\data\Pagination;
 use app\models\News;
@@ -165,11 +166,6 @@ class SiteController extends Controller
         return $this->render('analitic', compact('post', 'pages'));
     }
 
-    public function actionView(){
-        $id = \Yii::$app->request->get('id');
-        $page = News::findOne($id);
-        return $this->render('view', compact('page'));
-    }
     public function actionList(){
         $tags = \Yii::$app->request->get('id');
         $query = News::find()->where(['tags2' => $tags])->orWhere(['tags1' => $tags]);
@@ -212,10 +208,20 @@ class SiteController extends Controller
         return $this->render('signup', compact('model'));
     }
 
-    public function actionComments()
-    {
-        return $this->render('comments');
+    public function actionView(){
+        $id = \Yii::$app->request->get('id');
+        $page = News::findOne($id);
+
+        $model = new AddComments();
+        $model->username = Yii::$app->user->identity->name;
+        $model->subject = $page->category;
+        if (isset($_POST['AddComments'])){
+            $model->text = $_POST['AddComments']['text'];
+            $model->addcomment();
+        }
+            return $this->render('view', compact('page', 'model'));
     }
+
 
 
 }

@@ -88,44 +88,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-<script type="text/javascript">
-    function down()
-    {
-        var a = document.getElementById('dropdown3');
-        if ( a.style.display == 'none' )
-            a.style.display = 'block'
-        else
-        if ( a.style.display == 'block' )
-            a.style.display = 'none';
-    };
-    function down1()
-    {
-        var a = document.getElementById('dropdown1');
-        if ( a.style.display == 'none' )
-            a.style.display = 'block'
-        else
-        if ( a.style.display == 'block' )
-            a.style.display = 'none';
-    };
-
-</script>
-
-<div>
-    <a onclick="down()">Поделись записью</a>
-    <ul id="dropdown3" style="display:none">
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Google Plus</a></li>
-        <li><a href="#">ВКонтакте</a></li>
-        <li><a onclick="down1()">RSS</a>
-            <ul id="dropdown1" style="display:none">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </li>
-    </ul>
-</div>
 
 <footer class="footer">
     <div class="container">
