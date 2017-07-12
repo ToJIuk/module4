@@ -14,7 +14,12 @@ $session->set('countall', $session['countnow']+$session['countall']);
         </div>
         <div class="col-lg-8">
             <p><?= Html::img($page->img) ?></p><br>
-            <p><?= $page->text ?></p><hr>
+
+            <?php if (Yii::$app->user->isGuest && $page->analityc) { ?>
+                <p><?= $page->description ?></p><p><b>Для доступа к полному тексту необходима авторизация</b></p><hr>
+            <?php }else { ?>
+                <p><?= $page->text ?></p><hr>
+            <?php } ?>
         </div>
 
         <div class="col-lg-8">

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Signup;
 use yii\data\Pagination;
 use app\models\News;
 use Yii;
@@ -9,7 +10,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\models\Login;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -79,17 +80,22 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!\Yii::$app->user->isGuest){
+
             return $this->goHome();
         }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $login_model = new Login();
+        if (\Yii::$app->request->post('Login')){
+            $login_model->attributes = \Yii::$app->request->post('Login');
+            if ($login_model->validate()){
+                \Yii::$app->user->login($login_model->getUser());
+                if (\Yii::$app->user->identity->name == 'admin' ){
+                    return $this->redirect(['admin/default/index']);
+                }
+                return $this->goHome();
+            }
         }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return $this->render('login', compact('login_model'));
     }
 
     /**
@@ -192,6 +198,23 @@ class SiteController extends Controller
             ->limit($pages->limit)
             ->all();
         return $this->render('search', compact('page','pages'));
+    }
+
+    public function actionSignup()
+    {
+        $model = new Signup();
+        if (isset($_POST['Signup'])){
+            $model->attributes = \Yii::$app->request->post('Signup');
+            if ($model->validate() && $model->signup()){
+                return $this->goHome();
+            }
+        }
+        return $this->render('signup', compact('model'));
+    }
+
+    public function actionComments()
+    {
+        return $this->render('comments');
     }
 
 

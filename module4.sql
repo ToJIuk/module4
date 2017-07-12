@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 11 2017 г., 23:19
+-- Время создания: Июл 12 2017 г., 15:28
 -- Версия сервера: 10.1.21-MariaDB
 -- Версия PHP: 5.6.30
 
@@ -122,6 +122,27 @@ INSERT INTO `news` (`id`, `category`, `text`, `analityc`, `description`, `img`, 
 (76, 'Спорт', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img36.jpg', 'спорт36', 'выборы', 'поражение'),
 (77, 'Спорт', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img37.jpg', 'спорт37', 'выборы', 'поражение');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'Tolik', 'dt150685@mail.ru', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(2, 'admin', 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -133,6 +154,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -141,6 +168,11 @@ ALTER TABLE `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

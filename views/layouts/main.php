@@ -3,8 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use kartik\nav\NavX;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
@@ -18,7 +18,6 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -35,19 +34,30 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+    echo NavX::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Главная', 'url' => ['/site/index']],
+            ['label' => 'Список',
+                'items' => [
+                    ['label' => 'Пункт1', 'url' => ['#']],
+                    ['label' => 'Пункт2', 'url' => ['#']],
+                    ['label' => 'Пункт3', 'url' => ['#']],
+
+                    ['label' => 'Пункт4',
+                        'items' => [
+                            ['label' => 'Пункт5', 'url' => ['#']],
+                            ['label' => 'Пункт6', 'url' => ['#']],
+                            ['label' => 'Пункт7', 'url' => ['#']],
+                        ],],],],
+            ['label' => 'Регистрация', 'url' => ['/site/signup']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Вход', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Выход (' . Yii::$app->user->identity->name . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -56,7 +66,7 @@ AppAsset::register($this);
         ],
     ]);
     echo " <br> <form action=" . \yii\helpers\Url::to(['site/search']) .  " method ='get' style='text-align: center'>
-    <input list='tags' id=\"search-field\" name=\"q\" type=\"text\" placeholder=\"Искать ...\" class=\"hint\" autocomplete=\"off\" />
+    <input list='tags' id=\"search-field\" name=\"q\" type=\"text\" placeholder=\"Искать по тегам ...\" class=\"hint\" autocomplete=\"off\" />
     <datalist id=\"tags\">";
     foreach (\app\models\News::find()->groupBy(['tags1'])->all() as $a) {
         echo "<option > $a->tags1 </option >
@@ -76,6 +86,45 @@ AppAsset::register($this);
         ]) ?>
         <?= $content ?>
     </div>
+</div>
+
+<script type="text/javascript">
+    function down()
+    {
+        var a = document.getElementById('dropdown3');
+        if ( a.style.display == 'none' )
+            a.style.display = 'block'
+        else
+        if ( a.style.display == 'block' )
+            a.style.display = 'none';
+    };
+    function down1()
+    {
+        var a = document.getElementById('dropdown1');
+        if ( a.style.display == 'none' )
+            a.style.display = 'block'
+        else
+        if ( a.style.display == 'block' )
+            a.style.display = 'none';
+    };
+
+</script>
+
+<div>
+    <a onclick="down()">Поделись записью</a>
+    <ul id="dropdown3" style="display:none">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Google Plus</a></li>
+        <li><a href="#">ВКонтакте</a></li>
+        <li><a onclick="down1()">RSS</a>
+            <ul id="dropdown1" style="display:none">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+    </ul>
 </div>
 
 <footer class="footer">
