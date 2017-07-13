@@ -1,17 +1,20 @@
 <?php
 
+use yii\widgets\Pjax;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use yii\widgets\LinkPager;
 
 $session = Yii::$app->session;
-$session->set('countnow', rand(0, 5));
-$session->set('countall', $session['countnow']+$session['countall']);
+$session->set('countnow', rand(1, 5));
+$session->set('countall', $session['countall'] ? $session['countnow'] + $session['countall']: $session['countnow']);
 ?>
 
 <div class="row">
 
 <?php if (!empty($page)): ?>
+
         <div class="col-lg-8">
             <h1><?= $page->name ?></h1><hr>
         </div>
@@ -37,11 +40,13 @@ $session->set('countall', $session['countnow']+$session['countall']);
          </div>
 <?php endif; ?>
 </div>
-<h1>Комментарии</h1><hr>
+<h2>Комментарии</h2><hr>
+<?php Pjax::begin();?>
 <div class="row">
     <div class="col-lg-4">
 
-        <?php $form = ActiveForm::begin(['class' => 'form-horizontal']); ?>
+        <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal',
+                 'data' => ['pjax' => true]],]); ?>
 
         <?= $form->field($model, 'text')->label('Текст сообщения') ?>
 
@@ -56,11 +61,13 @@ $session->set('countall', $session['countnow']+$session['countall']);
 </div>
 <hr>
 <div class="row">
-    <div class="col-lg-4">
-        <a href=""><?= $model->username?></a>: <?= $model->text ?>
-
+    <div class="col-lg-8">
+        <?php foreach ($comments as $com): ?>
+         <?= "{$com->id}.<b>{$com->username}</b>: \"{$com->text}\" __ <sub>{$com->date}</sub><br>" ?>
+        <?php endforeach;?>
+        <?= LinkPager::widget(['pagination' => $post]) ?>
     </div>
 </div>
-
+<?php Pjax::end();?>
 
 

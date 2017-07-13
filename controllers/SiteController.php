@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\AddComments;
+use app\models\Comments;
+use app\models\CommentsFields;
 use app\models\Signup;
 use yii\data\Pagination;
 use app\models\News;
@@ -69,8 +71,9 @@ class SiteController extends Controller
         $datapolitic = News::find()->where(['category' =>'Политика'])->orderBy('id desc')->limit(5)->all();
         $dataanalitic = News::find()->where(['analityc' =>1])->orderBy('id desc')->limit(5)->all();
         $dataslider = News::find()->orderBy('id desc')->limit(3)->all();
+        $comments = Comments::find()->orderBy('count DESC')->all();
 
-        return $this->render('index', compact('datasport', 'datapolitic', 'dataanalitic', 'dataslider'));
+        return $this->render('index', compact('datasport', 'datapolitic', 'dataanalitic', 'dataslider', 'comments'));
     }
 
 
@@ -111,33 +114,6 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
     public function actionSport(){
         $query = News::find()->where(['category' => 'Спорт']);
@@ -211,15 +187,21 @@ class SiteController extends Controller
     public function actionView(){
         $id = \Yii::$app->request->get('id');
         $page = News::findOne($id);
-
-        $model = new AddComments();
-        $model->username = Yii::$app->user->identity->name;
-        $model->subject = $page->category;
-        if (isset($_POST['AddComments'])){
-            $model->text = $_POST['AddComments']['text'];
-            $model->addcomment();
+        $model = new Comments();
+        if (isset($_POST['Comments'])){
+            $model->date = date('j F Y h:i:s');
+            $model->username = Yii::$app->user->identity->name;
+            $model->subject = $page->name;
+            $model->text = $_POST['Comments']['text'];
+            $model->insert();
         }
-            return $this->render('view', compact('page', 'model'));
+        $comment = Comments::find()->where(['subject' => $page->name]);
+        $post = new Pagination(['totalCount' => $comment->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $comments = $comment->offset($post->offset)->limit($post->limit)->all();
+
+
+        return $this->render('view', compact('page', 'model', 'comments', 'post'));
     }
 
 

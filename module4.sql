@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 12 2017 г., 15:28
+-- Время создания: Июл 13 2017 г., 16:33
 -- Версия сервера: 10.1.21-MariaDB
 -- Версия PHP: 5.6.30
 
@@ -19,6 +19,64 @@ SET time_zone = "+00:00";
 --
 -- База данных: `module4`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `text` text NOT NULL,
+  `count` int(11) DEFAULT NULL,
+  `subject` varchar(50) NOT NULL,
+  `date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `comments`
+--
+
+INSERT INTO `comments` (`id`, `username`, `text`, `count`, `subject`, `date`) VALUES
+(35, 'Tolik', 'some message1', 2, 'спорт37', '13 July 2017 02:51:46'),
+(36, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:52:46'),
+(37, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:54:14'),
+(38, 'Taras', 'message', 3, 'спорт36', '13 July 2017 02:52:46'),
+(39, 'Taras', 'message', 1, 'спорт35', '13 July 2017 02:53:46'),
+(40, 'Taras', 'message1', 1, 'спорт35', '13 July 2017 02:54:46'),
+(41, 'Taras', 'message2', 6, 'спорт35', '13 July 2017 02:55:46'),
+(42, 'Taras', 'message3', 2, 'спорт35', '13 July 2017 02:55:46'),
+(43, 'Taras', 'message4', 4, 'спорт34', '13 July 2017 02:56:46'),
+(44, 'Taras', 'message5', 3, 'спорт34', '13 July 2017 02:57:46'),
+(45, 'Taras', 'message6', 3, 'спорт34', '14 July 2017 02:58:46'),
+(46, 'Taras', 'message7', 6, 'спорт33', '13 July 2017 02:59:46'),
+(47, 'Taras', 'message8', 7, 'спорт33', '15 July 2017 02:52:40'),
+(48, 'Kolia', 'message', 1, 'спорт33', '13 July 2017 02:52:41'),
+(49, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:42'),
+(50, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:43'),
+(51, 'Kolia', 'message', 2, 'спорт31', '13 July 2017 02:52:44'),
+(52, 'Sasha', 'message', 3, 'спорт31', '13 July 2017 02:52:45'),
+(53, 'Sasha', 'message', 6, 'спорт30', '13 July 2017 02:52:50'),
+(54, 'Sasha', 'message', 3, 'спорт30', '13 July 2017 02:52:32'),
+(55, 'Vlad', 'text', NULL, 'спорт29', '13 July 2017 03:54:14'),
+(56, 'Vlad', 'text1', NULL, 'спорт29', '13 July 2017 03:54:14'),
+(57, 'Vlad', 'text2', NULL, 'спорт28', '13 July 2017 03:50:14'),
+(58, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:03:22'),
+(59, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:04:46'),
+(60, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:05:29'),
+(61, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:06:08'),
+(62, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:13:31'),
+(63, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:09'),
+(64, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:15'),
+(65, 'Vasia', 'hello', NULL, 'спорт37', '13 July 2017 03:16:52'),
+(66, 'Vasia', 'hello2', NULL, 'спорт37', '13 July 2017 03:17:10'),
+(67, 'Vasia', 'hello6', NULL, 'спорт37', '13 July 2017 03:18:11'),
+(68, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:21:03'),
+(69, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:22:19'),
+(70, 'Vasia', '123', NULL, 'спорт37', '13 July 2017 03:22:28'),
+(71, 'Vasia', '6', NULL, 'спорт37', '13 July 2017 03:22:34');
 
 -- --------------------------------------------------------
 
@@ -112,9 +170,9 @@ INSERT INTO `news` (`id`, `category`, `text`, `analityc`, `description`, `img`, 
 (66, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img35.jpg', 'политика35', 'выборы', 'победа'),
 (67, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img36.jpg', 'политика36', 'выборы', 'победа'),
 (68, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img37.jpg', 'политика37', 'выборы', 'победа'),
-(69, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img38.jpg', 'политика38', 'выборы', 'поражение'),
-(70, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img39.jpg', 'политика39', 'выборы', 'поражение'),
-(71, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img40.jpg', 'политика40', 'выборы', 'поражение'),
+(69, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img8.jpg', 'политика38', 'выборы', 'поражение'),
+(70, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img29.jpg', 'политика39', 'выборы', 'поражение'),
+(71, 'Политика', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img4.jpg', 'политика40', 'выборы', 'поражение'),
 (72, 'Спорт', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img32.jpg', 'спорт32', 'выборы', 'поражение'),
 (73, 'Спорт', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img33.jpg', 'спорт33', 'выборы', 'поражение'),
 (74, 'Спорт', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem. Quisque pharetra nisi et ipsum fringilla, vel vestibulum felis maximus. Nulla sollicitudin urna et purus placerat ullamcorper. Sed vel dictum massa. Integer metus metus, vulputate eu efficitur sed, elementum sit amet enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque et massa pretium, ornare nulla at, pretium dolor. Nam imperdiet erat id est suscipit, sed tincidunt nisi consequat. Praesent nec fermentum diam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec suscipit risus. Pellentesque venenatis augue sed justo euismod lacinia. In dui orci, luctus consectetur nibh in, mattis hendrerit lorem...', '@web/images/img34.jpg', 'спорт34', 'выборы', 'поражение'),
@@ -141,28 +199,49 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (1, 'Tolik', 'dt150685@mail.ru', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
-(2, 'admin', 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997');
+(2, 'admin', 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997'),
+(3, 'Kolia', 'kolia@kolia.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(4, 'Vasia', 'vasia@vasia.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(5, 'Sasha', 'sasha@sasha.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(6, 'Taras', 'taras@taras.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(7, 'Vlad', 'vlad@vlad.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
+-- Индексы таблицы `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sub` (`subject`),
+  ADD KEY `username` (`username`);
+
+--
 -- Индексы таблицы `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category` (`category`),
+  ADD KEY `name` (`name`);
 
 --
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
+--
+-- AUTO_INCREMENT для таблицы `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
@@ -172,7 +251,18 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`name`),
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`subject`) REFERENCES `news` (`name`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

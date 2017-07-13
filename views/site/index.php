@@ -46,7 +46,7 @@ $this->title = 'Module4';
                         <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
-
+                <hr>
             </div>
             <div class="col-lg-8">
                 <?php if (!empty($datapolitic)): ?>
@@ -56,6 +56,7 @@ $this->title = 'Module4';
                         <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
+                <hr>
 
             </div>
             <div class="col-lg-8">
@@ -66,10 +67,17 @@ $this->title = 'Module4';
                         <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
-
+                <hr>
             </div>
 
         </div>
 
-    </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>Топ 5 комментаторов:</h2>
+                <?php foreach ($comments as $com): ?>
+                <?= $com->username . '<br>'?>
+                <?php endforeach; ?>
+            </div>
+        </div>
 </div>
