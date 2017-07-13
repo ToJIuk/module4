@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 13 2017 г., 16:33
+-- Время создания: Июл 13 2017 г., 23:59
 -- Версия сервера: 10.1.21-MariaDB
 -- Версия PHP: 5.6.30
 
@@ -76,7 +76,10 @@ INSERT INTO `comments` (`id`, `username`, `text`, `count`, `subject`, `date`) VA
 (68, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:21:03'),
 (69, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:22:19'),
 (70, 'Vasia', '123', NULL, 'спорт37', '13 July 2017 03:22:28'),
-(71, 'Vasia', '6', NULL, 'спорт37', '13 July 2017 03:22:34');
+(71, 'Vasia', '6', NULL, 'спорт37', '13 July 2017 03:22:34'),
+(72, 'Tolik', 'fdsfs', NULL, 'спорт37', '13 July 2017 11:40:32'),
+(73, 'Tolik', 's', NULL, 'спорт37', '13 July 2017 11:40:42'),
+(74, 'Tolik', 'sfsfsfs', NULL, 'спорт37', '13 July 2017 11:40:54');
 
 -- --------------------------------------------------------
 
@@ -241,7 +244,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --

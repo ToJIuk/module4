@@ -7,9 +7,11 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\LinkPager;
 
 $session = Yii::$app->session;
-$session->set('countnow', rand(1, 5));
-$session->set('countall', $session['countall'] ? $session['countnow'] + $session['countall']: $session['countnow']);
+$now = rand(1, 5);
+$session->set('countall', $session['countall'] ? $now + $session['countall']: $now);
+
 ?>
+<?php Pjax::begin();?>
 
 <div class="row">
 
@@ -36,12 +38,12 @@ $session->set('countall', $session['countall'] ? $session['countnow'] + $session
         </div>
 
         <div class="col-lg-8">
-            <?= "Наблюдают: {$session['countnow']} <br> Всего просмотров: {$session['countall']} <hr>"?>
+            <?= "Наблюдают: {$now} <br> Всего просмотров: {$session['countall']} <hr>"?>
          </div>
 <?php endif; ?>
 </div>
-<h2>Комментарии</h2><hr>
-<?php Pjax::begin();?>
+<h2 onclick="set()">Комментарии</h2><hr>
+
 <div class="row">
     <div class="col-lg-4">
 

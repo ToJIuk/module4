@@ -67,17 +67,28 @@ $this->title = 'Module4';
                         <p><a href="<?=Url::to(['site/view', 'id' => $i->id])?>"><?= $i->name ?></a></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                <hr>
             </div>
 
         </div>
 
         <div class="row">
             <div class="col-lg-8">
+                <hr>
                 <h2>Топ 5 комментаторов:</h2>
                 <?php foreach ($comments as $com): ?>
-                <?= $com->username . '<br>'?>
+                <span><a href="<?=Url::to(['site/commentator', 'id' => $com->username])?>"><?= $com->username?></a></span>
                 <?php endforeach; ?>
             </div>
         </div>
-</div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <hr>
+                <h2>Топ 3 активных темы:</h2>
+                <?php foreach ($top3 as $com): ?>
+                    <span><a href="<?=Url::to(['site/view', 'id' => $com->subject])?>"><?= $com->subject?></a></span>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+    </div>

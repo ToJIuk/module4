@@ -71,9 +71,12 @@ class SiteController extends Controller
         $datapolitic = News::find()->where(['category' =>'Политика'])->orderBy('id desc')->limit(5)->all();
         $dataanalitic = News::find()->where(['analityc' =>1])->orderBy('id desc')->limit(5)->all();
         $dataslider = News::find()->orderBy('id desc')->limit(3)->all();
-        $comments = Comments::find()->orderBy('count DESC')->all();
-
-        return $this->render('index', compact('datasport', 'datapolitic', 'dataanalitic', 'dataslider', 'comments'));
+        $comments = Comments::find()->select('username, COUNT(username)')
+            ->groupBy('username')->orderBy(' COUNT(username) DESC')->limit(5)->all();
+        $top3 = Comments::find()->select('subject, COUNT(subject)')
+            ->groupBy('subject')->orderBy(' COUNT(text) DESC')->limit(3)->all();
+        return $this->render('index', compact('datasport', 'datapolitic',
+            'dataanalitic', 'dataslider', 'comments', 'top3'));
     }
 
 
@@ -186,7 +189,11 @@ class SiteController extends Controller
 
     public function actionView(){
         $id = \Yii::$app->request->get('id');
-        $page = News::findOne($id);
+        if (is_numeric($id)){
+            $page = News::findOne($id);
+        }else {
+            $page = News::find()->where(['name' => $id])->one();
+        }
         $model = new Comments();
         if (isset($_POST['Comments'])){
             $model->date = date('j F Y h:i:s');
@@ -204,6 +211,13 @@ class SiteController extends Controller
         return $this->render('view', compact('page', 'model', 'comments', 'post'));
     }
 
-
+    public function actionCommentator(){
+        $name = \Yii::$app->request->get('id');
+        $comment = Comments::find()->where(['username' => $name]);
+        $post = new Pagination(['totalCount' => $comment->count(), 'pageSize' => 5, 'pageSizeParam' => false,
+            'forcePageParam' => false]);
+        $comments = $comment->offset($post->offset)->limit($post->limit)->all();
+        return $this->render('commentator', compact('comments', 'post'));
+    }
 
 }

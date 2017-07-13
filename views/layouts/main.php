@@ -6,8 +6,8 @@
 use kartik\nav\NavX;
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 ?>
@@ -23,7 +23,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody(); ?>
 
 <div class="wrap">
     <?php
@@ -81,24 +81,31 @@ AppAsset::register($this);
 
     ?>
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <?php
+        Modal::begin([
+        'header' => '<h2>Hello world</h2>',
+        'toggleButton' => ['label' => 'click me', 'tag' => 'div'],
+        ]);
+        ?>
+            <input type="text" name="Name">
+            <input type="email" name="Email">
+            <button>Отправить</button>
+        <?php
+        Modal::end(); ?>
         <?= $content ?>
     </div>
 </div>
-
-
+<?php
+$this->registerJs("
+    window.onbeforeunload = function() {
+        return \"Вы действительно хотите покинуть сайт?\";
+        };
+", \yii\web\View::POS_END); ?>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; by ToJIuk <?= date('Y') ?></p>
     </div>
 </footer>
-<script>
-    window.onbeforeunload = function() {
-    return "Вы действительно хотите покинуть сайт?";
-    };
-</script>
 <?php $this->endBody() ?>
 </body>
 </html>
