@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 ?>
@@ -52,6 +51,7 @@ AppAsset::register($this);
                             ['label' => 'Пункт6', 'url' => ['#']],
                             ['label' => 'Пункт7', 'url' => ['#']],
                         ],],],],
+            ['label' => 'Фильтр', 'url' => ['/site/filter']],
             ['label' => 'Регистрация', 'url' => ['/site/signup']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
@@ -86,20 +86,13 @@ AppAsset::register($this);
 
         <div class="row">
             <div class="col-lg-2">
-                <?php $this->beginBlock('block1'); ?>
 
-                ...содержимое блока 1...
 
-                <?php $this->endBlock(); ?>
-                <?php if (isset($this->blocks['block1'])): ?>
-                    <?= $this->blocks['block1'] ?>
-                <?php endif; ?>
             </div>
             <div class="col-lg-8"> <?= $content ?> </div>
             <div class="col-lg-2">
-                <?php if (isset($this->blocks['block1'])): ?>
-                    <?= $this->blocks['block1'] ?>
-                <?php endif; ?>
+
+
             </div>
         </div>
     </div>
@@ -110,28 +103,14 @@ $this->registerJs("
         return \"Вы действительно хотите покинуть сайт?\";
         };
 ", \yii\web\View::POS_END); ?>
-<?php Pjax::end();?>
 
 <footer class="footer">
-    <?php
-    $this->registerJs("
-    $(document).ready(function() {
-    setInterval(function(){ $(\"#test\").click(); }, 3000);
-    });
-    ", \yii\web\View::POS_END); ?>
-
     <div class="container">
-        <?php
-        Modal::begin([
-                'options' => ['id' => 'test'],
-            'header' => '<h2>Hello world</h2>',
-        ]);
-        Modal::end(); ?>
-
         <p class="pull-left">&copy; by ToJIuk <?= date('Y') ?></p>
-        <?php Pjax::begin();?><button data-toggle="modal" data-target="#test" ></button><?php Pjax::end();?>
     </div>
 </footer>
+<?php Pjax::end(); ?>
+
 <?php $this->endBody() ?>
 </body>
 </html>

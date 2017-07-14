@@ -28,14 +28,12 @@ $this->title = 'Module4';
             ]
         ],
         'options' => [
-            'class' => 'col-lg-8',
-            'style' => 'auto;' // Задаем ширину контейнера
+            'style' => 'width: 640px;'
         ]
     ]);
     ?>
 
-
-            <div class="col-lg-8">
+<div class="col-lg-8">
                 <?php if (!empty($datasport)): ?>
                     <h2><a href="<?= Url::to(['site/sport']) ?>">Спорт</a> </h2>
 

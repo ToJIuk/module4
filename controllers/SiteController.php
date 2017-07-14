@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\AddComments;
 use app\models\Comments;
 use app\models\CommentsFields;
+use app\models\Reclame;
 use app\models\Signup;
 use yii\data\Pagination;
 use app\models\News;
@@ -75,10 +76,9 @@ class SiteController extends Controller
             ->groupBy('username')->orderBy(' COUNT(username) DESC')->limit(5)->all();
         $top3 = Comments::find()->select('subject, COUNT(subject)')
             ->groupBy('subject')->orderBy(' COUNT(text) DESC')->limit(3)->all();
-        $content1 = 'Left';
-        $content2 = 'Right';
+        $reclame = Reclame::find()->all();
         return $this->render('index', compact('datasport', 'datapolitic',
-            'dataanalitic', 'dataslider', 'comments', 'top3', 'content1', 'content2'));
+            'dataanalitic', 'dataslider', 'comments', 'top3', 'reclame'));
     }
 
 
@@ -220,6 +220,12 @@ class SiteController extends Controller
             'forcePageParam' => false]);
         $comments = $comment->offset($post->offset)->limit($post->limit)->all();
         return $this->render('commentator', compact('comments', 'post'));
+    }
+
+    public function actionFilter(){
+        $model = News::find()->groupBy('name');
+        return $this->render('filter', compact('model'));
+
     }
 
 }
