@@ -75,8 +75,10 @@ class SiteController extends Controller
             ->groupBy('username')->orderBy(' COUNT(username) DESC')->limit(5)->all();
         $top3 = Comments::find()->select('subject, COUNT(subject)')
             ->groupBy('subject')->orderBy(' COUNT(text) DESC')->limit(3)->all();
+        $content1 = 'Left';
+        $content2 = 'Right';
         return $this->render('index', compact('datasport', 'datapolitic',
-            'dataanalitic', 'dataslider', 'comments', 'top3'));
+            'dataanalitic', 'dataslider', 'comments', 'top3', 'content1', 'content2'));
     }
 
 

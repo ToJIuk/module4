@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 13 2017 г., 23:59
+-- Время создания: Июл 14 2017 г., 13:16
 -- Версия сервера: 10.1.21-MariaDB
 -- Версия PHP: 5.6.30
 
@@ -71,15 +71,7 @@ INSERT INTO `comments` (`id`, `username`, `text`, `count`, `subject`, `date`) VA
 (63, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:09'),
 (64, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:15'),
 (65, 'Vasia', 'hello', NULL, 'спорт37', '13 July 2017 03:16:52'),
-(66, 'Vasia', 'hello2', NULL, 'спорт37', '13 July 2017 03:17:10'),
-(67, 'Vasia', 'hello6', NULL, 'спорт37', '13 July 2017 03:18:11'),
-(68, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:21:03'),
-(69, 'Vasia', 'gfdgdgd', NULL, 'спорт37', '13 July 2017 03:22:19'),
-(70, 'Vasia', '123', NULL, 'спорт37', '13 July 2017 03:22:28'),
-(71, 'Vasia', '6', NULL, 'спорт37', '13 July 2017 03:22:34'),
-(72, 'Tolik', 'fdsfs', NULL, 'спорт37', '13 July 2017 11:40:32'),
-(73, 'Tolik', 's', NULL, 'спорт37', '13 July 2017 11:40:42'),
-(74, 'Tolik', 'sfsfsfs', NULL, 'спорт37', '13 July 2017 11:40:54');
+(66, 'Vasia', 'hello2', NULL, 'спорт37', '13 July 2017 03:17:10');
 
 -- --------------------------------------------------------
 
@@ -186,6 +178,33 @@ INSERT INTO `news` (`id`, `category`, `text`, `analityc`, `description`, `img`, 
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `reclame`
+--
+
+CREATE TABLE `reclame` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `price` int(11) NOT NULL,
+  `firm` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `reclame`
+--
+
+INSERT INTO `reclame` (`id`, `name`, `price`, `firm`) VALUES
+(1, 'телефон', 5000, 'самсунг'),
+(2, 'планшет', 3000, 'лг'),
+(3, 'ноутбук', 6000, 'асус'),
+(4, 'телевизор', 5050, 'филипс'),
+(5, 'ремонт квартир', 60000, 'строимдом'),
+(6, 'установка окон', 10050, 'окна'),
+(7, 'ремонт машин', 20000, 'СТО'),
+(8, 'монтаж дверей', 12050, 'двери');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -207,7 +226,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (4, 'Vasia', 'vasia@vasia.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
 (5, 'Sasha', 'sasha@sasha.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
 (6, 'Taras', 'taras@taras.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
-(7, 'Vlad', 'vlad@vlad.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
+(7, 'Vlad', 'vlad@vlad.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(8, 'Olia', 'olia@olia.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
 
 --
 -- Индексы сохранённых таблиц
@@ -230,6 +250,12 @@ ALTER TABLE `news`
   ADD KEY `name` (`name`);
 
 --
+-- Индексы таблицы `reclame`
+--
+ALTER TABLE `reclame`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -244,17 +270,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
+-- AUTO_INCREMENT для таблицы `reclame`
+--
+ALTER TABLE `reclame`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

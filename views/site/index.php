@@ -7,37 +7,34 @@ use yii\helpers\Url;
 
 $this->title = 'Module4';
 ?>
-<div class="site-index">
 
-    <div class="row"><?php
-                echo Carousel::widget([
-                    'items' => [
-                        [
-                            'content' => Html::img($dataanalitic[0]->img),
-                            'caption' => '<h1>' . $dataanalitic[0]->name . '</h1>',
-                            'options' => []
-                        ],
-                        [
-                            'content' => Html::img($dataanalitic[1]->img),
-                            'caption' => '<h1>' . $dataanalitic[1]->name . '</h1>',
-                            'options' => []
-                        ],
-                        [
-                            'content' => Html::img($dataanalitic[2]->img),
-                            'caption' => '<h1>' . $dataanalitic[2]->name . '</h1>',
-                            'options' => []
-                        ]
-                    ],
-                    'options' => [
-                        'style' => 'width:474px;' // Задаем ширину контейнера
-                    ]
-                ]);
-        ?>
-    </div>
+    <?php
+    echo Carousel::widget([
+        'items' => [
+            [
+                'content' => Html::img($dataanalitic[0]->img),
+                'caption' => '<h1>' . $dataanalitic[0]->name . '</h1>',
+                'options' => []
+            ],
+            [
+                'content' => Html::img($dataanalitic[1]->img),
+                'caption' => '<h1>' . $dataanalitic[1]->name . '</h1>',
+                'options' => []
+            ],
+            [
+                'content' => Html::img($dataanalitic[2]->img),
+                'caption' => '<h1>' . $dataanalitic[2]->name . '</h1>',
+                'options' => []
+            ]
+        ],
+        'options' => [
+            'class' => 'col-lg-8',
+            'style' => 'auto;' // Задаем ширину контейнера
+        ]
+    ]);
+    ?>
 
-    <div class="body-content">
 
-        <div class="row">
             <div class="col-lg-8">
                 <?php if (!empty($datasport)): ?>
                     <h2><a href="<?= Url::to(['site/sport']) ?>">Спорт</a> </h2>
@@ -69,9 +66,7 @@ $this->title = 'Module4';
                 <?php endif; ?>
             </div>
 
-        </div>
 
-        <div class="row">
             <div class="col-lg-8">
                 <hr>
                 <h2>Топ 5 комментаторов:</h2>
@@ -79,9 +74,7 @@ $this->title = 'Module4';
                 <span><a href="<?=Url::to(['site/commentator', 'id' => $com->username])?>"><?= $com->username?></a></span>
                 <?php endforeach; ?>
             </div>
-        </div>
 
-        <div class="row">
             <div class="col-lg-8">
                 <hr>
                 <h2>Топ 3 активных темы:</h2>
@@ -89,6 +82,4 @@ $this->title = 'Module4';
                     <span><a href="<?=Url::to(['site/view', 'id' => $com->subject])?>"><?= $com->subject?></a></span>
                 <?php endforeach; ?>
             </div>
-        </div>
 
-    </div>

@@ -8,7 +8,8 @@ use yii\helpers\Html;
 <div class="row">
     <div class="col-lg-4">
 
-        <?php $form = ActiveForm::begin(['class' => 'form-horizontal']); ?>
+        <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal',
+            'data' => ['pjax' => true]],]); ?>
 
         <?= $form->field($model, 'name')->label('Имя')->textInput(['autofocus' => true]) ?>
 

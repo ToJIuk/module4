@@ -1,6 +1,5 @@
 <?php
 
-use yii\widgets\Pjax;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
@@ -11,7 +10,6 @@ $now = rand(1, 5);
 $session->set('countall', $session['countall'] ? $now + $session['countall']: $now);
 
 ?>
-<?php Pjax::begin();?>
 
 <div class="row">
 
@@ -42,7 +40,7 @@ $session->set('countall', $session['countall'] ? $now + $session['countall']: $n
          </div>
 <?php endif; ?>
 </div>
-<h2 onclick="set()">Комментарии</h2><hr>
+<h2>Комментарии</h2><hr>
 
 <div class="row">
     <div class="col-lg-4">
@@ -70,6 +68,5 @@ $session->set('countall', $session['countall'] ? $now + $session['countall']: $n
         <?= LinkPager::widget(['pagination' => $post]) ?>
     </div>
 </div>
-<?php Pjax::end();?>
 
 
