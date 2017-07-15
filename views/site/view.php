@@ -56,14 +56,17 @@ $session->set('countall', $session['countall'] ? $now + $session['countall']: $n
             </div> <?php }else {echo "Для добавления комментариев необходима авторизация";} ?>
 
         <?php ActiveForm::end(); ?>
-
+    <?php if ($page->category == 'Политика'){
+        echo "Комментарии будут добавлены после проверки администратором!";
+    }?>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-lg-8">
         <?php foreach ($comments as $com): ?>
-         <?= "{$com->id}.<b>{$com->username}</b>: \"{$com->text}\" __ <sub>{$com->date}</sub><br>" ?>
+         <?= "{$com->id}.<b>{$com->username}</b>: \"{$com->text}\" __ <sub>{$com->date}</sub>" ?>
+            <button>+</button><button>-</button><br>
         <?php endforeach;?>
         <?= LinkPager::widget(['pagination' => $post]) ?>
     </div>

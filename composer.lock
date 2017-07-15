@@ -457,7 +457,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-12-06 18:38:52"
+            "time": "2014-12-06T18:38:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

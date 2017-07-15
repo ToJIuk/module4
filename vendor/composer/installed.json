@@ -3320,7 +3320,7 @@
         },
         "time": "2014-12-06T18:38:52+00:00",
         "type": "yii2-extension",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "kartik\\nav\\": ""

@@ -198,17 +198,19 @@ class SiteController extends Controller
         }
         $model = new Comments();
         if (isset($_POST['Comments'])){
+            if ($page->category == 'Политика'){
+                $model->display = 0;
+            }
             $model->date = date('j F Y h:i:s');
             $model->username = Yii::$app->user->identity->name;
             $model->subject = $page->name;
             $model->text = $_POST['Comments']['text'];
             $model->insert();
         }
-        $comment = Comments::find()->where(['subject' => $page->name]);
+        $comment = Comments::find()->where(['subject' => $page->name])->andWhere(['display' => 1]);
         $post = new Pagination(['totalCount' => $comment->count(), 'pageSize' => 5, 'pageSizeParam' => false,
             'forcePageParam' => false]);
         $comments = $comment->offset($post->offset)->limit($post->limit)->all();
-
 
         return $this->render('view', compact('page', 'model', 'comments', 'post'));
     }

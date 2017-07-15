@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 14 2017 г., 16:35
+-- Время создания: Июл 15 2017 г., 16:27
 -- Версия сервера: 10.1.21-MariaDB
--- Версия PHP: 5.6.30
+-- Версия PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,48 +30,53 @@ CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `text` text NOT NULL,
-  `count` int(11) DEFAULT NULL,
+  `count` int(11) DEFAULT '2',
   `subject` varchar(50) NOT NULL,
-  `date` varchar(50) NOT NULL
+  `date` varchar(50) NOT NULL,
+  `display` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `comments`
 --
 
-INSERT INTO `comments` (`id`, `username`, `text`, `count`, `subject`, `date`) VALUES
-(35, 'Tolik', 'some message1', 2, 'спорт37', '13 July 2017 02:51:46'),
-(36, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:52:46'),
-(37, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:54:14'),
-(38, 'Taras', 'message', 3, 'спорт36', '13 July 2017 02:52:46'),
-(39, 'Taras', 'message', 1, 'спорт35', '13 July 2017 02:53:46'),
-(40, 'Taras', 'message1', 1, 'спорт35', '13 July 2017 02:54:46'),
-(41, 'Taras', 'message2', 6, 'спорт35', '13 July 2017 02:55:46'),
-(42, 'Taras', 'message3', 2, 'спорт35', '13 July 2017 02:55:46'),
-(43, 'Taras', 'message4', 4, 'спорт34', '13 July 2017 02:56:46'),
-(44, 'Taras', 'message5', 3, 'спорт34', '13 July 2017 02:57:46'),
-(45, 'Taras', 'message6', 3, 'спорт34', '14 July 2017 02:58:46'),
-(46, 'Taras', 'message7', 6, 'спорт33', '13 July 2017 02:59:46'),
-(47, 'Taras', 'message8', 7, 'спорт33', '15 July 2017 02:52:40'),
-(48, 'Kolia', 'message', 1, 'спорт33', '13 July 2017 02:52:41'),
-(49, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:42'),
-(50, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:43'),
-(51, 'Kolia', 'message', 2, 'спорт31', '13 July 2017 02:52:44'),
-(52, 'Sasha', 'message', 3, 'спорт31', '13 July 2017 02:52:45'),
-(53, 'Sasha', 'message', 6, 'спорт30', '13 July 2017 02:52:50'),
-(54, 'Sasha', 'message', 3, 'спорт30', '13 July 2017 02:52:32'),
-(55, 'Vlad', 'text', NULL, 'спорт29', '13 July 2017 03:54:14'),
-(56, 'Vlad', 'text1', NULL, 'спорт29', '13 July 2017 03:54:14'),
-(57, 'Vlad', 'text2', NULL, 'спорт28', '13 July 2017 03:50:14'),
-(58, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:03:22'),
-(59, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:04:46'),
-(60, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:05:29'),
-(61, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:06:08'),
-(62, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:13:31'),
-(63, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:09'),
-(64, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:15'),
-(65, 'Vasia', 'hello', NULL, 'спорт37', '13 July 2017 03:16:52'),
-(66, 'Vasia', 'hello2', NULL, 'спорт37', '13 July 2017 03:17:10');
+INSERT INTO `comments` (`id`, `username`, `text`, `count`, `subject`, `date`, `display`) VALUES
+(35, 'Tolik', 'some message1', 2, 'спорт37', '13 July 2017 02:51:46', 1),
+(36, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:52:46', 1),
+(37, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 02:54:14', 1),
+(38, 'Taras', 'message', 3, 'спорт36', '13 July 2017 02:52:46', 1),
+(39, 'Taras', 'message', 1, 'спорт35', '13 July 2017 02:53:46', 1),
+(40, 'Taras', 'message1', 1, 'спорт35', '13 July 2017 02:54:46', 1),
+(41, 'Taras', 'message2', 6, 'спорт35', '13 July 2017 02:55:46', 1),
+(42, 'Taras', 'message3', 2, 'спорт35', '13 July 2017 02:55:46', 1),
+(43, 'Taras', 'message4', 4, 'спорт34', '13 July 2017 02:56:46', 1),
+(44, 'Taras', 'message5', 3, 'спорт34', '13 July 2017 02:57:46', 1),
+(45, 'Taras', 'message6', 3, 'спорт34', '14 July 2017 02:58:46', 1),
+(46, 'Taras', 'message7', 6, 'спорт33', '13 July 2017 02:59:46', 1),
+(47, 'Taras', 'message8', 7, 'спорт33', '15 July 2017 02:52:40', 1),
+(48, 'Kolia', 'message', 1, 'спорт33', '13 July 2017 02:52:41', 1),
+(49, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:42', 1),
+(50, 'Kolia', 'message', 1, 'спорт32', '13 July 2017 02:52:43', 1),
+(51, 'Kolia', 'message', 2, 'спорт31', '13 July 2017 02:52:44', 1),
+(52, 'Sasha', 'message', 3, 'спорт31', '13 July 2017 02:52:45', 1),
+(53, 'Sasha', 'message', 6, 'спорт30', '13 July 2017 02:52:50', 1),
+(54, 'Sasha', 'message', 3, 'спорт30', '13 July 2017 02:52:32', 1),
+(55, 'Vlad', 'text', NULL, 'спорт29', '13 July 2017 03:54:14', 1),
+(56, 'Vlad', 'text1', NULL, 'спорт29', '13 July 2017 03:54:14', 1),
+(57, 'Vlad', 'text2', NULL, 'спорт28', '13 July 2017 03:50:14', 1),
+(58, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:03:22', 1),
+(59, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:04:46', 1),
+(60, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:05:29', 1),
+(61, 'Vasia', 'some messag2', NULL, 'спорт37', '13 July 2017 03:06:08', 1),
+(62, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:13:31', 1),
+(63, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:09', 1),
+(64, 'Vasia', 'привет', NULL, 'спорт37', '13 July 2017 03:14:15', 1),
+(65, 'Vasia', 'hello', NULL, 'спорт37', '13 July 2017 03:16:52', 1),
+(66, 'Vasia', 'hello2', NULL, 'спорт37', '13 July 2017 03:17:10', 1),
+(87, 'Sasha', 'fsfsfs', NULL, 'спорт37', '14 July 2017 10:28:43', 1),
+(88, 'Vasia', 'sfsfsfs', NULL, 'политика40', '14 July 2017 10:44:53', 1),
+(89, 'Vasia', 'sfsfsfs', 2, 'политика40', '14 July 2017 10:47:16', 0),
+(90, 'admin', 'пример', 2, 'политика30', '15 July 2017 01:07:41', 0);
 
 -- --------------------------------------------------------
 
@@ -270,7 +275,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --

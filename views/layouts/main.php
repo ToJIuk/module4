@@ -44,7 +44,6 @@ AppAsset::register($this);
                     ['label' => 'Пункт1', 'url' => ['#']],
                     ['label' => 'Пункт2', 'url' => ['#']],
                     ['label' => 'Пункт3', 'url' => ['#']],
-
                     ['label' => 'Пункт4',
                         'items' => [
                             ['label' => 'Пункт5', 'url' => ['#']],
@@ -65,6 +64,7 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             )
+
         ],
     ]);
     echo " <br> <form action=" . \yii\helpers\Url::to(['site/search']) .  " method ='get' style='text-align: center'>
@@ -85,14 +85,23 @@ AppAsset::register($this);
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-2">
-
+            <div class="col-lg-2" ">
+            <h3>Реклама</h3>
+                <?php
+                    foreach (\app\models\Reclame::find()->limit(4)->all() as $a){
+                        echo "<p style='border: solid 1px;'>$a->name почти даром: $a->price грн от фирмы: $a->firm </p><br>";
+                    }
+                ?>
 
             </div>
             <div class="col-lg-8"> <?= $content ?> </div>
-            <div class="col-lg-2">
-
-
+            <div class="col-lg-2" >
+                <h3>Реклама</h3>
+                <?php
+                    foreach (\app\models\Reclame::find()->offset(4)->all() as $a){
+                        echo "<p class='tolik'  style='border: solid 1px;'>$a->name почти даром: $a->price грн от фирмы: $a->firm </p><br>";
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -103,6 +112,16 @@ $this->registerJs("
         return \"Вы действительно хотите покинуть сайт?\";
         };
 ", \yii\web\View::POS_END); ?>
+
+<?php
+$this->registerJs("
+$(\".tolik\").mouseover(function () {
+$(\".tolik\").css('background','red');
+});
+$(\".tolik\").mouseout(function () {
+$(\".tolik\").css('background','white');
+});
+", \yii\web\View::POS_READY); ?>
 
 <footer class="footer">
     <div class="container">
